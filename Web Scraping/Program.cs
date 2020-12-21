@@ -12,11 +12,16 @@ namespace Web_Scraping
             HtmlWeb web = new HtmlWeb();
 
             var htmlDoc = web.Load(html);
+            var jobTitles = htmlDoc.DocumentNode.SelectNodes("//*[@class='offer_primary_info']");
 
-            foreach (var nNode in htmlDoc.DocumentNode.SelectNodes("//h2"))
-            {
-                    Console.WriteLine(nNode.InnerText);
+            foreach (var jobTitle in jobTitles)
+            {   
+                Console.WriteLine(jobTitle.SelectSingleNode("h2").InnerText);
             }
+
+
+
+          
         }
     }
 }
